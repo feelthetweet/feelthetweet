@@ -64,3 +64,9 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+# Created by https://www.gitignore.io/api/sass
+
+### Sass ###
+.sass-cache/
+*.css.map
