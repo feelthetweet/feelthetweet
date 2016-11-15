@@ -3,285 +3,396 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>#FeelTweet</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Feel the Tweet" />
-		<meta name="keywords" content="feel_the_tweet" />
-		<meta name="author" content="FeelTheTweet" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>FeelTheTweet!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.co" />
 
-	  	<!-- Facebook and Twitter integration -->
-		<meta property="og:title" content=""/>
-		<meta property="og:image" content=""/>
-		<meta property="og:url" content=""/>
-		<meta property="og:site_name" content=""/>
-		<meta property="og:description" content=""/>
-		<meta name="twitter:title" content="" />
-		<meta name="twitter:image" content="" />
-		<meta name="twitter:url" content="" />
-		<meta name="twitter:card" content="" />
+  <!-- 
+	//////////////////////////////////////////////////////
 
-		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<link rel="shortcut icon" href="favicon.ico">
-		<!-- <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'> -->
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FreeHTML5.co
 		
-		<!-- Animate.css -->
-		<link rel="stylesheet" href="css/animate.css">
-		<!-- Icomoon Icon Fonts-->
-		<link rel="stylesheet" href="css/icomoon.css">
-		<!-- Bootstrap  -->
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<!-- Theme style  -->
-		<link rel="stylesheet" href="css/style.css">
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
 
-		<!-- Owl Carousel  -->
-		<link rel="stylesheet" href="css/owl.carousel.min.css">
-		<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	//////////////////////////////////////////////////////
+	 -->
 
-		<!-- Modernizr JS -->
-		<script src="js/modernizr-2.6.2.min.js"></script>
-		<!-- FOR IE9 below -->
-		<!--[if lt IE 9]>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
-		<style type="text/css">
-			input[type="text"], textarea {
-			  background-color : white; 
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'> -->
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
 
-			}
-			.check {
-			    height: 100%;
-			    position: relative;
-			}
-			.center {
-			    position: absolute;
-			    top: 50%;
-			}
-		</style>
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart','bar']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart3D);
+	  google.charts.setOnLoadCallback(drawChartSlice);
+      
+
+
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':450,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawChart3D() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {
+        	'title':'How Much Pizza I Ate Last Night',
+        	'is3D': true,
+        	'width':450,
+            'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('barchart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawChartSlice() {
+        var data = google.visualization.arrayToDataTable([
+          ['Language', 'Speakers (in millions)'],
+          ['Assamese', 13], ['Bengali', 83], ['Bodo', 1.4],
+          ['Dogri', 2.3], ['Gujarati', 46], ['Hindi', 300],
+          ['Kannada', 38], ['Kashmiri', 5.5], ['Konkani', 5],
+          ['Maithili', 20], ['Malayalam', 33], ['Manipuri', 1.5],
+          ['Marathi', 72], ['Nepali', 2.9], ['Oriya', 33],
+          ['Punjabi', 29], ['Sanskrit', 0.01], ['Santhali', 6.5],
+          ['Sindhi', 2.5], ['Tamil', 61], ['Telugu', 74], ['Urdu', 52]
+        ]);
+
+        var options = {
+          title: 'Indian Language Use',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  4: {offset: 0.2},
+                    12: {offset: 0.3},
+                    14: {offset: 0.4},
+                    15: {offset: 0.5},
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+
+      
+    </script>
 
 	</head>
 	<body>
 	
-		<header id="fh5co-header">
-			<div class="container check" id="section1" style="text-align: center;">
-				<div class="form-group" style="display: inline;">
-					<input type="text" class="form-control center" id="usr" placeholder="ELTE" style="">
+	<header id="fh5co-header">
+	<div class="container" style="height: 100%;">
+		<div class="row" style="position: relative;top: 50%;">
+		<div class="col-md-1"></div>
+		<div class="form-group col-md-8 col-xs-12 col-sm-6" style="text-align: center;">
+  			<input type="text" class="form-control" id="hashtag" placeholder="ELTE">
+		</div>
+		<div class="col-md-3 col-xs-12 col-sm-6">
+			<input type="submit" name="FeelTheTweet!" value="FeelTheTweet" class="btn">
+		</div>
+		</div>
+	</div>
+	
+		
+	</header>
+
+	<div id="main">
+
+		<div class="container">
+
+			<div class="row fh5co-feature">
+				<div class="col-md-6 col-md-push-6 col-xs-12" style="top: 0px!important;">
+					<div class="fh5co-copy">
+						<div class="fh5co-copy-inner">
+							<h2>Keep It Simple</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-md-pull-6 col-xs-12">
+					<div class="fh5co-img">
+						<figure class="fh5co-figure animate-box">
+						 <div id="chart_div"></div>
+						</figure>
+					</div>
 				</div>
 			</div>
-		</header>
+			<!-- END feature -->
 
-		<div id="main">
+			<div class="row fh5co-feature fh5co-reverse">
+				<div class="col-md-6">
+					<div class="fh5co-copy">
+						<div class="fh5co-copy-inner ">
+							<h2>Pixel Perfect</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="fh5co-img">
+						<figure class="fh5co-figure animate-box">
+							<div id="barchart_div"></div>	
+						</figure>
+					</div>
+				</div>
+			</div>
+			<!-- END feature -->
 
+			<div class="row fh5co-feature last-feature">
+				<div class="col-md-6 col-md-push-6 col-xs-12">
+					<div class="fh5co-copy">
+						<div class="fh5co-copy-inner">
+							<h2>Beautiful Design</h2>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-md-pull-6 col-xs-12">
+					<div class="fh5co-img">
+						<figure class="fh5co-figure animate-box">
+							<div id="piechart"></div>	
+						</figure>
+					</div>
+				</div>
+			</div>
+			<!-- END feature -->
+
+		
+		</div>
+
+
+		<div class="fh5co-testimonial">
 			<div class="container">
-
-				<div class="row fh5co-feature">
-					<div class="col-md-6 col-md-push-6">
-						<div class="fh5co-copy">
-							<div class="fh5co-copy-inner">
-								<h2>Keep It Simple</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-md-pull-6">
-						<div class="fh5co-img">
-							<figure class="fh5co-figure animate-box">
-								<img class="img-2" src="images/screenshot_1.jpg" alt="Free Website Template by FreeHTML5.co">	
-							</figure>
-						</div>
-					</div>
+				<div class="row text-center fh5co-heading">
+					<h2>Customer Review</h2>
 				</div>
-				<!-- END feature -->
-
-				<div class="row fh5co-feature fh5co-reverse">
-					<div class="col-md-6">
-						<div class="fh5co-copy">
-							<div class="fh5co-copy-inner">
-								<h2>Pixel Perfect</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="fh5co-img">
-							<figure class="fh5co-figure animate-box">
-								<img class="img-2" src="images/screenshot_2.jpg" alt="Free Website Template by FreeHTML5.co">	
+				<div class="owl-carousel owl-carousel-fullwidth">
+					<div class="item">
+						<div class="testimony-slide active text-center">
+							<figure>
+								<img src="images/person_1.jpg" alt="user">
 							</figure>
+							<span>Jean Doe </span>
+							<span class="review">
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star"></i>
+							</span>
+							<blockquote>
+								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
 						</div>
 					</div>
-				</div>
-				<!-- END feature -->
-
-				<div class="row fh5co-feature last-feature">
-					<div class="col-md-6 col-md-push-6">
-						<div class="fh5co-copy">
-							<div class="fh5co-copy-inner">
-								<h2>Beautiful Design</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-md-pull-6">
-						<div class="fh5co-img">
-							<figure class="fh5co-figure animate-box">
-								<img class="img-2" src="images/screenshot_3.jpg" alt="Free Website Template by FreeHTML5.co">	
+					<div class="item">
+						<div class="testimony-slide active text-center">
+							<figure>
+								<img src="images/person_2.jpg" alt="user">
 							</figure>
+							<span>John Doe </span>
+							<span class="review">
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+							</span>
+							<blockquote>
+								<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
 						</div>
 					</div>
-				</div>
-				<!-- END feature -->			
-			</div>
-
-			<div class="fh5co-testimonial">
-				<div class="container">
-					<div class="row text-center fh5co-heading">
-						<h2>Customer Review</h2>
-					</div>
-					<div class="owl-carousel owl-carousel-fullwidth">
-						<div class="item">
-							<div class="testimony-slide active text-center">
-								<figure>
-									<img src="images/person_1.jpg" alt="user">
-								</figure>
-								<span>Jean Doe </span>
-								<span class="review">
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star"></i>
-								</span>
-								<blockquote>
-									<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-								</blockquote>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-slide active text-center">
-								<figure>
-									<img src="images/person_2.jpg" alt="user">
-								</figure>
-								<span>John Doe </span>
-								<span class="review">
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-								</span>
-								<blockquote>
-									<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-								</blockquote>
-							</div>
-						</div>
-						<div class="item">
-							<div class="testimony-slide active text-center">
-								<figure>
-									<img src="images/person_3.jpg" alt="user">
-								</figure>
-								<span>Rob Smith </span>
-								<span class="review">
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-									<i class="icon-star colored"></i>
-								</span>
-								<blockquote>
-									<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-								</blockquote>
-							</div>
+					<div class="item">
+						<div class="testimony-slide active text-center">
+							<figure>
+								<img src="images/person_3.jpg" alt="user">
+							</figure>
+							<span>Rob Smith </span>
+							<span class="review">
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+								<i class="icon-star colored"></i>
+							</span>
+							<blockquote>
+								<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<div id="features">
-				<div class="container">
-					<div class="row text-center fh5co-heading">
-						<div class="col-md-8 col-md-offset-2">
-							<h2>More Features</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+		<div id="features">
+			<div class="container">
+				<div class="row text-center fh5co-heading">
+					<div class="col-md-8 col-md-offset-2">
+						<h2>More Features</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 animate-box">
+						<div class="feature-center">
+							<span class="icon">
+								<i class="icon-tablet"></i>
+							</span>
+							<h3>Fully Responsive</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-3 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-tablet"></i>
-								</span>
-								<h3>Fully Responsive</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-							</div>
+					<div class="col-md-3 animate-box">
+						<div class="feature-center">
+							<span class="icon">
+								<i class="icon-heart"></i>
+							</span>
+							<h3>Love by everyone</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
 						</div>
-						<div class="col-md-3 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-heart"></i>
-								</span>
-								<h3>Love by everyone</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-							</div>
+					</div>
+					<div class="col-md-3 animate-box">
+						<div class="feature-center">
+							<span class="icon">
+								<i class="icon-star"></i>
+							</span>
+							<h3>Good Review</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
 						</div>
-						<div class="col-md-3 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-star"></i>
-								</span>
-								<h3>Good Review</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-							</div>
-						</div>
-						<div class="col-md-3 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-cog"></i>
-								</span>
-								<h3>API</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-							</div>
+					</div>
+					<div class="col-md-3 animate-box">
+						<div class="feature-center">
+							<span class="icon">
+								<i class="icon-cog"></i>
+							</span>
+							<h3>API</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<footer id="footer">
-				<div class="container">
-					<div class="col-md-12 text-center">
-						<p class="copyright">
-							<small>&copy; 2016. Free HTML5 Template. All Rights Reserved.</small>
-							<em><small>Designed by <a href="http://freehtm5.co" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small></em>
-						</p>
-						<ul class="fh5co-social">
-
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-apple"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</footer>
 		</div>
 		
-		<!-- jQuery -->
-		<script src="js/jquery.min.js"></script>
-		<!-- jQuery Easing -->
-		<script src="js/jquery.easing.1.3.js"></script>
-		<!-- Bootstrap -->
-		<script src="js/bootstrap.min.js"></script>
-		<!-- Waypoints -->
-		<script src="js/jquery.waypoints.min.js"></script>
-		<!-- Carousel -->
-		<script src="js/owl.carousel.min.js"></script>
+		
 
-		<!-- MAIN JS -->
-		<script src="js/main.js"></script>
+		<footer id="footer">
+			<div class="container">
+				<div class="col-md-12 text-center">
+					<p class="copyright">
+						<small>&copy; 2016. Free HTML5 Template. All Rights Reserved.</small>
+						<em><small>Designed by <a href="http://freehtm5.co" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small></em>
+					</p>
+					<ul class="fh5co-social">
+
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="#"><i class="icon-apple"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
 
 	</body>
 </html>
+
