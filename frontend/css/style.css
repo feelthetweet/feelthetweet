@@ -268,7 +268,7 @@ h1, h2, h3, h4, h5, h6, figure {
 @media screen and (max-width: 992px) {
   .fh5co-feature {
     overflow: hidden;
-    height: inherit !important;
+    
   }
 }
 .fh5co-feature .fh5co-copy {
@@ -613,3 +613,68 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~ Custom Styles ~~~~~~~~~~~~~~~~~~~~~~~  */
+
+input[type="text"], textarea {
+
+      background-color : white; 
+
+    }
+
+
+    .check {
+        height: 100%;
+        position: relative;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+    }
+    .btn {
+      background: #3498db;
+      background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+      background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+      background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+      background-image: -o-linear-gradient(top, #3498db, #2980b9);
+      background-image: linear-gradient(to bottom, #3498db, #2980b9);
+      -webkit-border-radius: 28;
+      -moz-border-radius: 28;
+      border-radius: 28px;
+      font-family: Georgia;
+      color: #ffffff;
+      font-size: 21px;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+      }
+
+      .btn:hover {
+      background: #3cb0fd;
+      background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+      background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+      text-decoration: none;
+    } 
+    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-style: italic;
+    }
+    input::-moz-placeholder { /* Firefox 19+ */
+      font-style: italic;
+    }
+    input:-ms-input-placeholder { /* IE 10+ */
+      font-style: italic;
+    }
+    input:-moz-placeholder { /* Firefox 18- */
+      font-style: italic;
+    }
+
+    @media screen and (max-width: 992px) {
+      .btn {
+        position: relative;
+        left: 25%;
+        
+      }
+    }
