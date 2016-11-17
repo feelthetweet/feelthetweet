@@ -7,71 +7,66 @@ google.charts.setOnLoadCallback(drawChartSlice);
 // http://stackoverflow.com/a/5931227
 function drawPieChart(data) {
   google.charts.setOnLoadCallback(function() {
-    doDrawPieChart(data);
+    var chartData = prepareChartData(data);
+    doDrawPieChart(chartData, data);
   });
 }
 
-function drawScatterChart(data) {
+function drawBarChart(data) {
   google.charts.setOnLoadCallback(function() {
-    doDrawScatterChart(data);
+    var chartData = prepareChartData(data);
+    doDrawBarChart(chartData, data);
   });
+}
+
+function prepareChartData(data) {
+  // Create the data table.
+  var dataTable = new google.visualization.DataTable();
+  var columns = data['columns'];
+
+  for (var i = 0; i < columns.length; i++) {
+    var column = columns[i];
+    dataTable.addColumn(column['type'], column['label']);
+  }
+
+  var rows = data['rows'];
+
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    dataTable.addRows([[row['name'], row['value']]]);
+  }
+
+  return dataTable;
 }
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function doDrawPieChart(chartData) {
-  // Create the data table.
-  var data = new google.visualization.DataTable();
-
-  var columns = chartData['columns'];
-
-  for (var i = 0; i < columns.length; i++) {
-    var column = columns[i];
-    data.addColumn(column['type'], column['label']);
-  }
-
-  var rows = chartData['rows'];
-
-  for (var i = 0; i < rows.length; i++) {
-    var row = rows[i];
-    data.addRows([[row['name'], row['value']]]);
-  }
-
+function doDrawPieChart(chartData, data) {
   // Set chart options
   var options = {
-    'title': chartData['title'],
+    'title': data['title'],
     'width': 450,
     'height': 300
   };
 
   // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-  chart.draw(data, options);
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+  chart.draw(chartData, options);
 }
 
-function doDrawScatterChart(chartData) {
-  var data = google.visualization.arrayToDataTable([
-                                                   ['Age', 'Weight'],
-                                                   [ 8,      12],
-                                                   [ 4,      5.5],
-                                                   [ 11,     14],
-                                                   [ 4,      5],
-                                                   [ 3,      3.5],
-                                                   [ 6.5,    7]
-                                                   ]);
-
+function doDrawBarChart(chartData, data) {
+  // Set chart options
   var options = {
-    title: 'Age vs. Weight comparison',
-    hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-    vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
-    legend: 'none'
+    'title': data['title'],
+    'width': 500,
+    'height': 300
   };
 
-  var chart = new google.visualization.ScatterChart(document.getElementById('scatterchart_div'));
-
-  chart.draw(data, options);
-}
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+  chart.draw(chartData, options);
+};
 
 function drawChartSlice() {
   var data = google.visualization.arrayToDataTable([

@@ -2,18 +2,19 @@
 document.addEventListener('DOMContentLoaded', processTweets);
 
 function processTweets() {
-  var tweetsData = tweets['tweets'];
+  var tweets = tweetsData['tweets'];
 
-  var tweetEmotions = prepareTweetsByEmotion(tweetsData);
+  var tweetEmotions = prepareTweetsByEmotion(tweets);
   drawPieChart(tweetEmotions);
 
-  drawScatterChart();
+  var retweetsByEmotions = prepareEmotionsByRetweets(tweets);
+  drawBarChart(retweetsByEmotions);
 }
 
 function prepareTweetsByEmotion(tweets) {
   var tweetEmotions = {
-    rows: [],
     title: 'Tweets by emotion',
+    rows: populateRows(tweets, 'emotion'),
     columns: [
     {
       label: 'emotions',
@@ -25,33 +26,51 @@ function prepareTweetsByEmotion(tweets) {
     }]
   };
 
+  return tweetEmotions;
+}
+
+function prepareEmotionsByRetweets(tweets) {
+  var tweetEmotions = {
+    title: 'Retweets by emotion',
+    rows: populateRows(tweets, 'emotion', 'retweet_count'),
+    columns: [
+    {
+      label: 'emotions',
+      type: 'string'
+    },
+    {
+      label: 'retweets',
+      type: 'number'
+    }]
+  };
+
+  return tweetEmotions;
+}
+
+function populateRows(tweets, rowIdentifier, rowValue) {
+  var rows = [];
   for (var i = 0; i < tweets.length; i++) {
     var tweet = tweets[i];
-    var rows = tweetEmotions['rows'];
     var rowFound = false;
     var rowIndex;
 
     for (var j = 0; j < rows.length; j++) {
       var row = rows[j];
-      if (row['name'] === tweet['emotion']) {
+      if (row['name'] === tweet[rowIdentifier]) {
         rowFound = true;
         rowIndex = j;
-        row['value'] += 1;
+        row['value'] += rowValue ? tweet[rowValue] : 1;
         break;
       }
     }
     if (!rowFound) {
       rows.push(
       {
-        name: tweet['emotion'],
-        value: 1
+        name: tweet[rowIdentifier],
+        value: rowValue ? tweet[rowValue] : 1
       });
     }
   }
 
-  return tweetEmotions;
-}
-
-function prepareRetweetsByEmotions() {
-  // TODO
+  return rows;
 }
