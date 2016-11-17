@@ -2,29 +2,45 @@
 google.charts.load('current', {'packages':['corechart','bar']});
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
-google.charts.setOnLoadCallback(drawChart3D);
 google.charts.setOnLoadCallback(drawChartSlice);
+
+// http://stackoverflow.com/a/5931227
+function drawPieChart(data) {
+  google.charts.setOnLoadCallback(function() {
+    doDrawPieChart(data);
+  });
+}
+
+function drawScatterChart(data) {
+  google.charts.setOnLoadCallback(function() {
+    doDrawScatterChart(data);
+  });
+}
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function drawChart() {
+function doDrawPieChart(chartData) {
   // Create the data table.
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Topping');
-  data.addColumn('number', 'Slices');
-  data.addRows([
-               ['Mushrooms', 3],
-               ['Onions', 1],
-               ['Olives', 1],
-               ['Zucchini', 1],
-               ['Pepperoni', 2]
-               ]);
+
+  var columns = chartData['columns'];
+
+  for (var i = 0; i < columns.length; i++) {
+    var column = columns[i];
+    data.addColumn(column['type'], column['label']);
+  }
+
+  var rows = chartData['rows'];
+
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    data.addRows([[row['name'], row['value']]]);
+  }
 
   // Set chart options
   var options = {
-    'title': 'How Much Pizza I Ate Last Night',
+    'title': chartData['title'],
     'width': 450,
     'height': 300
   };
@@ -34,29 +50,26 @@ function drawChart() {
   chart.draw(data, options);
 }
 
-function drawChart3D() {
-  // Create the data table.
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Topping');
-  data.addColumn('number', 'Slices');
-  data.addRows([
-               ['Mushrooms', 3],
-               ['Onions', 1],
-               ['Olives', 1],
-               ['Zucchini', 1],
-               ['Pepperoni', 2]
-               ]);
+function doDrawScatterChart(chartData) {
+  var data = google.visualization.arrayToDataTable([
+                                                   ['Age', 'Weight'],
+                                                   [ 8,      12],
+                                                   [ 4,      5.5],
+                                                   [ 11,     14],
+                                                   [ 4,      5],
+                                                   [ 3,      3.5],
+                                                   [ 6.5,    7]
+                                                   ]);
 
-  // Set chart options
   var options = {
-    'title': 'How Much Pizza I Ate Last Night',
-    'is3D': true,
-    'width': 450,
-    'height': 300
+    title: 'Age vs. Weight comparison',
+    hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+    vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+    legend: 'none'
   };
 
-  // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.PieChart(document.getElementById('barchart_div'));
+  var chart = new google.visualization.ScatterChart(document.getElementById('scatterchart_div'));
+
   chart.draw(data, options);
 }
 
