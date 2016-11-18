@@ -1,13 +1,23 @@
 // On init, get the tweets with the hashtag "elte"
-getTweetsByHashtag('elte');
+var DEFAULT_HASHTAG = 'ELTE';
+processTweetsByHashtag(DEFAULT_HASHTAG);
 
-function getTweetsByHashtag(hashtag) {
-  var tweets = tweetsData['tweets'];
+function getTweetsByHashtag() {
+  var hashtag = document.getElementById('search-text').value || DEFAULT_HASHTAG;
+  processTweetsByHashtag(hashtag);
+}
 
+function processTweetsByHashtag(hashtag) {
   hashtagFilter = {
     callback: hasHashtag,
     filterValue: hashtag
   };
+
+  processTweets(hashtagFilter);
+}
+
+function processTweets(tweetFilter) {
+  var tweets = tweetsData['tweets'];
 
   var tweetEmotions = prepareTweetsByEmotion(tweets, hashtagFilter);
   drawPieChart(tweetEmotions);
@@ -85,5 +95,13 @@ function populateRows(tweets, tweetFilter, rowIdentifier, rowValue) {
 }
 
 function hasHashtag(tweet, hashtag) {
-  return tweet['hashtags'] && tweet['hashtags'].indexOf(hashtag) !== -1;
+  var hastagFound;
+
+  if (tweet['hashtags']) {
+    hastagFound = tweet['hashtags'].some(function(tweetHashtag) {
+      return tweetHashtag.toLowerCase() === hashtag.toLowerCase();
+    })
+  }
+
+  return hastagFound;
 }
