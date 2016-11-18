@@ -7,7 +7,7 @@ var tweetsData =
     "favorite_count": 123,
     "emotion": "positive",
     "text": "Awesome tweet!",
-    "hashtags": ["awesome", "super"],
+    "hashtags": ["awesome", "super", "elte"],
   },
   {
     "id": "tweet2",
@@ -15,7 +15,7 @@ var tweetsData =
     "favorite_count": 1,
     "emotion": "neutral",
     "text": "This tweet is allright...",
-    "hashtags": ["school"],
+    "hashtags": ["school", "elte"],
   },
   {
     "id": "tweet3",

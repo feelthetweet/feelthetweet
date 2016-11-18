@@ -1,20 +1,25 @@
-// https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded
-document.addEventListener('DOMContentLoaded', processTweets);
+// On init, get the tweets with the hashtag "elte"
+getTweetsByHashtag('elte');
 
-function processTweets() {
+function getTweetsByHashtag(hashtag) {
   var tweets = tweetsData['tweets'];
 
-  var tweetEmotions = prepareTweetsByEmotion(tweets);
+  hashtagFilter = {
+    callback: hasHashtag,
+    filterValue: hashtag
+  };
+
+  var tweetEmotions = prepareTweetsByEmotion(tweets, hashtagFilter);
   drawPieChart(tweetEmotions);
 
-  var retweetsByEmotions = prepareEmotionsByRetweets(tweets);
+  var retweetsByEmotions = prepareEmotionsByRetweets(tweets, hashtagFilter);
   drawBarChart(retweetsByEmotions);
 }
 
-function prepareTweetsByEmotion(tweets) {
+function prepareTweetsByEmotion(tweets, tweetFilter) {
   var tweetEmotions = {
     title: 'Tweets by emotion',
-    rows: populateRows(tweets, 'emotion'),
+    rows: populateRows(tweets, tweetFilter, 'emotion'),
     columns: [
     {
       label: 'emotions',
@@ -29,10 +34,10 @@ function prepareTweetsByEmotion(tweets) {
   return tweetEmotions;
 }
 
-function prepareEmotionsByRetweets(tweets) {
+function prepareEmotionsByRetweets(tweets, tweetFilter) {
   var tweetEmotions = {
     title: 'Retweets by emotion',
-    rows: populateRows(tweets, 'emotion', 'retweet_count'),
+    rows: populateRows(tweets, tweetFilter, 'emotion', 'retweet_count'),
     columns: [
     {
       label: 'emotions',
@@ -47,30 +52,38 @@ function prepareEmotionsByRetweets(tweets) {
   return tweetEmotions;
 }
 
-function populateRows(tweets, rowIdentifier, rowValue) {
+function populateRows(tweets, tweetFilter, rowIdentifier, rowValue) {
   var rows = [];
   for (var i = 0; i < tweets.length; i++) {
     var tweet = tweets[i];
-    var rowFound = false;
-    var rowIndex;
+    var filterPassed = tweetFilter['callback'](tweet, tweetFilter['filterValue']);
 
-    for (var j = 0; j < rows.length; j++) {
-      var row = rows[j];
-      if (row['name'] === tweet[rowIdentifier]) {
-        rowFound = true;
-        rowIndex = j;
-        row['value'] += rowValue ? tweet[rowValue] : 1;
-        break;
+    if (filterPassed) {
+      var rowFound = false;
+      var rowIndex;
+
+      for (var j = 0; j < rows.length; j++) {
+        var row = rows[j];
+        if (row['name'] === tweet[rowIdentifier]) {
+          rowFound = true;
+          rowIndex = j;
+          row['value'] += rowValue ? tweet[rowValue] : 1;
+          break;
+        }
       }
-    }
-    if (!rowFound) {
-      rows.push(
-      {
-        name: tweet[rowIdentifier],
-        value: rowValue ? tweet[rowValue] : 1
-      });
+      if (!rowFound) {
+        rows.push(
+        {
+          name: tweet[rowIdentifier],
+          value: rowValue ? tweet[rowValue] : 1
+        });
+      }
     }
   }
 
   return rows;
+}
+
+function hasHashtag(tweet, hashtag) {
+  return tweet['hashtags'] && tweet['hashtags'].indexOf(hashtag) !== -1;
 }
