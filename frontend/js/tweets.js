@@ -17,7 +17,7 @@ function processTweetsByHashtag(hashtag) {
 }
 
 function processTweets(tweetFilter) {
-  var tweets = tweetsData['tweets'];
+  var tweets = tweetsData['tweets'];  // Replace this with the real data
 
   var tweetEmotions = prepareTweetsByEmotion(tweets, hashtagFilter);
   drawPieChart(tweetEmotions);
