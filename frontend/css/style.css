@@ -375,3 +375,41 @@ h1, h2, h3, h4, h5, h6, figure {
 /*# sourceMappingURL=style.css.map */
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~ Custom Styles ~~~~~~~~~~~~~~~~~~~~~~~  */
+
+#fh5co-header {
+  background-color: #FFDC00;
+}
+
+/* Bring the charts closer to the */
+#main {
+  margin-top: 10em;
+}
+
+.fh5co-feature {
+  padding-top: 0;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .chart {
+    display: inline-block;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 992px) {
+  #main {
+    margin-top: 0;
+  }
+  .fh5co-feature {
+    margin-bottom: 0;
+  }
+  .fh5co-img {
+    height: 600px;
+    display: table;
+  }
+ .fh5co-figure {
+   display: table-cell;
+   vertical-align: middle;
+  }
+}
+

@@ -1,3 +1,6 @@
+'use strict';
+/* global drawBarChart, drawPieChart, tweetsData */
+
 // On init, get the tweets with the hashtag "elte"
 var DEFAULT_HASHTAG = 'ELTE';
 processTweetsByHashtag(DEFAULT_HASHTAG);
@@ -8,7 +11,7 @@ function getTweetsByHashtag() {
 }
 
 function processTweetsByHashtag(hashtag) {
-  hashtagFilter = {
+  var hashtagFilter = {
     callback: hasHashtag,
     filterValue: hashtag
   };
@@ -19,16 +22,16 @@ function processTweetsByHashtag(hashtag) {
 function processTweets(tweetFilter) {
   var tweets = tweetsData['tweets'];  // Replace this with the real data
 
-  var tweetEmotions = prepareTweetsByEmotion(tweets, hashtagFilter);
+  var tweetEmotions = prepareTweetsByEmotion(tweets, tweetFilter);
   drawPieChart(tweetEmotions);
 
-  var retweetsByEmotions = prepareEmotionsByRetweets(tweets, hashtagFilter);
+  var retweetsByEmotions = prepareEmotionsByRetweets(tweets, tweetFilter);
   drawBarChart(retweetsByEmotions);
 }
 
 function prepareTweetsByEmotion(tweets, tweetFilter) {
   var tweetEmotions = {
-    title: 'Tweets by emotion',
+    title: 'Tweets by emotion, ' + tweetFilter['filterValue'],
     rows: populateRows(tweets, tweetFilter, 'emotion'),
     columns: [
     {
@@ -46,7 +49,7 @@ function prepareTweetsByEmotion(tweets, tweetFilter) {
 
 function prepareEmotionsByRetweets(tweets, tweetFilter) {
   var tweetEmotions = {
-    title: 'Retweets by emotion',
+    title: 'Retweets by emotion ' + tweetFilter['filterValue'],
     rows: populateRows(tweets, tweetFilter, 'emotion', 'retweet_count'),
     columns: [
     {
