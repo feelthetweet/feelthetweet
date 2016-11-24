@@ -52,6 +52,8 @@ function showSampleTweets(tweets, tweetFilter) {
     }
   }
 
+  // https://developer.mozilla.org/en/docs/Web/API/Document/readyState
+  // https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function(event) {
       doShowSampleTweets(tweets, tweetFilter);
