@@ -390,6 +390,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
+  /* Align charts to center */
+  /* http://stackoverflow.com/questions/11006096/center-aligning-the-google-charts#comment45296315_11006127 */
   .chart {
     display: inline-block;
     margin: 0 auto;
