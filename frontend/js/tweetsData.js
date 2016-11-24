@@ -22,7 +22,7 @@ var tweetsData =
     "retweet_count": 2125,
     "favorite_count": 24,
     "emotion": "negative",
-    "text": "This tweet is fucking allright...",
+    "text": "This tweet is totally allright...",
     "hashtags": ["NoSchool", "elte"],
   },
   {
@@ -56,6 +56,22 @@ var tweetsData =
     "emotion": "neutral",
     "text": "This tweet is allright too...",
     "hashtags": ["fool"],
+  },
+  {
+    "id": "tweet8",
+    "retweet_count": 34,
+    "favorite_count": 13,
+    "emotion": "positive",
+    "text": "Elte == tweet!",
+    "hashtags": ["awesome", "elte"],
+  },
+  {
+    "id": "tweet9",
+    "retweet_count": 20,
+    "favorite_count": 3,
+    "emotion": "negative",
+    "text": "Too many exams.",
+    "hashtags": ["school"],
   }],
   "most_popular_tweets": ["tweet1", "tweet3"]
 }

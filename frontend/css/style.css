@@ -380,6 +380,13 @@ h1, h2, h3, h4, h5, h6, figure {
   background-color: #FFDC00;
 }
 
+@media screen and (max-width: 768px) {
+  /* Adjust the header height in small screen */
+  #fh5co-header {
+    height: 600px;
+  }
+}
+
 /* Bring the charts closer to the */
 #main {
   margin-top: 10em;
@@ -415,3 +422,43 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+.tweets-container.upper,
+.tweets-container.lower,
+.search-container {
+  height: 33%;
+  position: relative;
+}
+
+.tweets-container.upper > * {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.tweets-container.lower {
+
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-container > * {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  margin-top: -50px; /* account for padding and border if not using box-sizing: border-box; */
+}
+
+.top-tweet {
+  font-size: xx-large;
+}
+
+.tweets-container.upper > .top-tweet {
+  color: #87CEFA;
+}
+
+.tweets-container.lower > .top-tweet {
+  color: #8B0000;
+}

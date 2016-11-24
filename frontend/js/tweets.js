@@ -22,11 +22,43 @@ function processTweetsByHashtag(hashtag) {
 function processTweets(tweetFilter) {
   var tweets = tweetsData['tweets'];  // Replace this with the real data
 
+  showSampleTweets(tweets, tweetFilter);
+ 
   var tweetEmotions = prepareTweetsByEmotion(tweets, tweetFilter);
   drawPieChart(tweetEmotions);
 
   var retweetsByEmotions = prepareEmotionsByRetweets(tweets, tweetFilter);
   drawBarChart(retweetsByEmotions);
+}
+
+function showSampleTweets(tweets, tweetFilter) {
+  function doShowSampleTweets(tweetsBy, tweetFilter) {
+    var samplePositiveTweet = getSampleTweetBy(tweets, tweetFilter, 'positive');
+    var positiveTweetElement = document.getElementById('upperTweetsContainer').firstElementChild;
+    if (samplePositiveTweet) {
+      positiveTweetElement.innerHTML = samplePositiveTweet['text'];
+    } else {
+      // Make sure there are no leftover content.
+      positiveTweetElement.innerHTML = '';
+    }
+
+    var sampleNegativeTweet = getSampleTweetBy(tweets, tweetFilter, 'negative');
+    var negativeTweetElement = document.getElementById('lowerTweetsContainer').firstElementChild;
+    if (sampleNegativeTweet) {
+      negativeTweetElement.innerHTML = sampleNegativeTweet['text'];
+    } else {
+      // Make sure there are no leftover content.
+      negativeTweetElement.innerHTML = '';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(event) {
+      doShowSampleTweets(tweets, tweetFilter);
+    });
+  } else {
+    doShowSampleTweets(tweets, tweetFilter);
+  }
 }
 
 function prepareTweetsByEmotion(tweets, tweetFilter) {
@@ -63,6 +95,24 @@ function prepareEmotionsByRetweets(tweets, tweetFilter) {
   };
 
   return tweetEmotions;
+}
+
+function getSampleTweetBy(tweets, tweetFilter, emotion) {
+  var tweetsBy = tweets.filter(function(tweet) {
+    var filterPassed = tweetFilter['callback'](tweet, tweetFilter['filterValue']);
+    if (filterPassed) {
+      var hasEmotion = tweet['emotion'] === emotion;
+    }
+    return filterPassed && hasEmotion;
+  });
+
+  var sampleTweet;
+  if (tweetsBy.length) {
+    // http://stackoverflow.com/a/4550514/7010222
+    sampleTweet = tweetsBy[Math.floor(Math.random() * tweetsBy.length)];
+  }
+ 
+  return sampleTweet;
 }
 
 function populateRows(tweets, tweetFilter, rowIdentifier, rowValue) {
